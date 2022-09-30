@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Hola</title>
+    </head>
+    <body>
+    <form method="post">
+        <h1>{{ task.title }}</h1>
+        <h4> {{ error }}</h4>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>
+            Update
+        </button>
+    </form>
+
+    <form method="post" action="{% url 'complete_task' task.id%}">
+        {% csrf_token %}
+        <button>
+            Completed
+        </button>
+    </form>
+        <form method="post" action="{% url 'deleted_task' task.id%}">
+        {% csrf_token %}
+        <button>
+            Eliminar
+        </button>
+    </form>
+    </body>
+    </html>
+{% endblock %}
